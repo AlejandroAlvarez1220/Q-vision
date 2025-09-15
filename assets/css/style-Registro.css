@@ -1,0 +1,150 @@
+/* Título y envoltura general */
+.registro-page-title {
+  font-size: 28px;
+  text-align: center;
+  margin: 12px 0 14px;
+}
+
+/* Tarjeta del formulario de registro */
+#formRegistro{
+  max-width: 560px;
+  margin: 10px auto 28px;                /* centrado y respiro */
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  padding: 18px 18px 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Etiquetas e inputs (sobrescribe el 90% global) */
+#formRegistro label{
+  display:block;
+  font-weight: 600;
+  color:#334155;
+  margin: 6px 0 4px;
+}
+
+#formRegistro input[type="text"],
+#formRegistro input[type="email"],
+#formRegistro input[type="password"]{
+  width: 90%;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font: inherit;
+  background: #fff;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+/* Foco accesible y consistente con la marca */
+#formRegistro input[type="text"]:focus,
+#formRegistro input[type="email"]:focus,
+#formRegistro input[type="password"]:focus{
+  border-color: var(--primary, #1D3A6C);
+  box-shadow: 0 0 0 3px rgba(29, 58, 108, .20);
+  outline: 2px solid transparent;        /* quita el outline por defecto */
+  outline-offset: 2px;
+}
+
+/* Checkboxes alineados con su texto (sin depender de .checkbox) */
+#formRegistro label > input[type="checkbox"]{
+  margin-right: 8px;
+  vertical-align: middle;
+  accent-color: var(--primary, #1D3A6C);
+}
+#formRegistro .checks{
+  display: grid;
+  gap: 6px;
+  margin: 6px 0 4px;
+}
+/* Si prefieres en línea uno al lado del otro, cambia a: 
+   .checks { display:flex; gap:12px; flex-wrap:wrap; }  */
+
+/* Botón principal */
+#formRegistro #btnRegister{
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 14px;
+  background: var(--primary, #1D3A6C);
+  color:#fff;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter .15s ease, transform .02s ease;
+}
+#formRegistro #btnRegister:hover{ filter: brightness(1.06); }
+#formRegistro #btnRegister:active{ transform: translateY(1px); }
+#formRegistro #btnRegister:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+/* Mensajes de estado (reutilizables) */
+.alert{
+  border:1px solid #e5e7eb;
+  background:#f8fafc;
+  color:#0f172a;
+  padding:10px 12px;
+  border-radius:10px;
+  margin: 6px 0 8px;
+  font-weight:600;
+}
+.alert--error{
+  background:#fee2e2;
+  border-color:#fecaca;
+  color:#b91c1c;
+}
+.alert--success{
+  background:#ecfdf5;
+  border-color:#a7f3d0;
+  color:#065f46;
+}
+
+/* Ayudas o hints bajo inputs */
+.form-hint{
+  margin-top: 4px;
+  color:#64748b;
+  font-size: 13px;
+}
+
+/* Validación nativa (opcional, si quieres feedback visual mínimo) */
+#formRegistro input:invalid[required]{
+  border-color:#fecaca;
+}
+#formRegistro input:invalid[required]:focus{
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, .20); /* rojo suave */
+}
+
+/* Responsive suave */
+@media (max-width: 600px){
+  #formRegistro{ padding: 16px; }
+  .registro-page-title{ font-size: 24px; }
+}
+
+/* ====== Compatibilidad con tu “tarjeta” de registro en Home (si reusaras IDs) ====== */
+/* Si usas la misma estructura en Home, esto no rompe nada; solo aplica a #formRegistro. */
+
+/* ====== Opcional: sección ilustración + formulario (si quieres una versión con dos columnas) ====== */
+/* Marca el contenedor con .registro-layout si más adelante decides agregar una imagen lateral */
+.registro-layout{
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.registro-layout .registro-figure{
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 10px;
+}
+.registro-layout .registro-figure img{
+  width:100%; height:auto; display:block; border-radius:12px;
+}
+@media (max-width: 900px){
+  .registro-layout{ grid-template-columns: 1fr; }
+}
