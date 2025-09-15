@@ -57,7 +57,6 @@ $headerStyle = $useNavImage ? " style=\"--nav-bg-image: url('".htmlspecialchars(
       <?php if (isset($_SESSION['usuario'])): ?>
         <span>👤 <?= htmlspecialchars($_SESSION['usuario']) ?></span>
 
-        <!-- Cerrar sesión (POST + CSRF) -->
         <form action="Logout.php" method="post" style="display:inline;">
           <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['csrf']) ?>">
           <button type="submit" class="link">Cerrar sesión</button>
@@ -75,7 +74,6 @@ $headerStyle = $useNavImage ? " style=\"--nav-bg-image: url('".htmlspecialchars(
   </div>
 </header>
 
-<!-- Modal de Login -->
 <div id="loginModal" class="modal hidden" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="modal-backdrop" data-close></div>
 
@@ -106,7 +104,7 @@ $headerStyle = $useNavImage ? " style=\"--nav-bg-image: url('".htmlspecialchars(
 </div>
 
 <?php if ($openLoginModal): ?>
-<!-- Abrir modal automáticamente si hay error -->
+
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   var modal = document.getElementById('loginModal');

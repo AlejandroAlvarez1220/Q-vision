@@ -2,14 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
   const mainMenu   = document.getElementById("mainMenu");
 
-  /* ===========================
-     REGISTROS (multi-form)
-     =========================== */
-
-  // Encuentra todos los formularios de registro posibles:
-  // - form con data-form="register"
-  // - form con id típico
-  // - o cualquier form que tenga password + confirmación
   const candidateForms = Array.from(document.querySelectorAll(
     'form[data-form="register"], #formRegistro, #registerForm, .register-card form, form'
   ));
@@ -21,21 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const setupRegisterForm = (form) => {
-    // Campos dentro del form (scope local)
     const passInp  = form.querySelector('#password, [name="password"]');
     const pass2Inp = form.querySelector('#password_confirm, [name="password_confirm"], [name="password_confirmation"], [name="confirm_password"]');
 
-    // Checkboxes (si existen en ese form)
     const terms  = form.querySelector('#terms, [name="terms"]');
     const policy = form.querySelector('#policy, [name="policy"]');
 
-    // Botón submit dentro del form (varias opciones)
     const btnReg = form.querySelector('#btnRegister, [data-role="register"], button[type="submit"].btn-primary, button[type="submit"]');
 
-    // Si faltan campos clave, no configuramos
     if (!passInp || !pass2Inp) return;
 
-    // Marca visual de error
     const setFieldsInvalid = (invalid) => {
       [passInp, pass2Inp].forEach(el => {
         el.classList.toggle("is-invalid", invalid);
@@ -64,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    // Habilita/deshabilita el botón según checks y contraseñas
+    // Habilita o deshabilita el botón según checks y contraseñas
     const syncRegisterState = () => {
       if (!btnReg) return;
       const checksOk = (terms ? terms.checked : true) && (policy ? policy.checked : true);
@@ -79,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (policy) policy.addEventListener("change", syncRegisterState);
     syncRegisterState();
 
-    // Bloquea envío si no coinciden (INFALIBLE)
+    // Bloquea envío si no coinciden
     form.addEventListener("submit", (e) => {
       if (!checkPasswords(true)) {
         e.preventDefault();
@@ -87,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // También bloquea por click del botón (algunos navegadores disparan antes)
+    // bloquea por click del botón
     if (btnReg) {
       btnReg.addEventListener("click", (e) => {
         if (!checkPasswords(true)) {
@@ -98,15 +85,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Configura cada form válido (soporta varios en la misma página)
+  // Configura cada form válido
   candidateForms
-    .filter((f, i, arr) => arr.indexOf(f) === i) // únicos
+    .filter((f, i, arr) => arr.indexOf(f) === i)
     .filter(isRegisterForm)
     .forEach(setupRegisterForm);
 
-  /* ===========================
-     MODAL LOGIN (igual que antes)
-     =========================== */
+/*
+    MODAL LOGIN (igual que antes)
+*/
   const modal = document.getElementById("loginModal");
   if (modal) {
     const openBtn  = document.querySelector('[data-open-modal="login"], #btnLogin');

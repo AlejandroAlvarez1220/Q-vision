@@ -684,7 +684,7 @@ header.nav-has-image::before{
 .aprende-item{ display:flex; flex-direction:column; align-items:center; gap:.75rem; }
 
 .aprende-grid .icon-circle img{
-  width: 120px !important;   /* o prueba 110–130px según gusto */
+  width: 120px !important;
   height: 120px !important;
   object-fit: contain;
   display:block;
@@ -727,7 +727,9 @@ header.nav-has-image::before{
   .icon-circle img{ max-width:105px; max-height:105px; }
 }
 
-/* inputs con error (contraseñas no coinciden) */
+/* 
+    contraseñas no coinciden
+*/
 .register-card .form input.is-invalid{
   border-color:#ef4444 !important;
   box-shadow:0 0 0 3px rgba(239,68,68,.15);
